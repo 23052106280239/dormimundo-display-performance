@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="ad.size" content="width=970,height=90">
+<title>Dormimundo Haz tu Agosto 970x90</title>
+<style>
+  html,body{margin:0;padding:0;}
+  #banner{position:relative;width:970px;height:90px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;cursor:pointer;}
+  .bg{position:absolute;left:0;top:0;width:970px;height:90px;}
+  .producto1{animation:fadeClosed 7s infinite;}
+  .producto2{animation:fadeOpen 7s infinite;}
+  @keyframes fadeClosed {
+    0%   { opacity:1; }
+    40%  { opacity:1; }
+    50%  { opacity:0; }
+    90%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @keyframes fadeOpen {
+    0%   { opacity:0; }
+    40%  { opacity:0; }
+    50%  { opacity:1; }
+    90%  { opacity:1; }
+    100% { opacity:0; }
+  }
+</style>
+</head>
+<body>
+<div id="banner" onclick="window.open(window.clickTag, '_blank');">
+    <img src="assets/background.png" class="bg" alt="">
+    <img src="assets/top.png" style="position:absolute;left:504px;top:20px;width:197px;height:48px;" alt="">
+    <img src="assets/promo.png" style="position:absolute;left:72px;top:10px;width:183px;height:70px;" alt="">
+    <img src="assets/copy_2en1.svg" style="position:absolute;left:278px;top:15.12px;width:179px;height:63.76px;" alt="">
+    <div class="producto-wrap" style="position:absolute;left:20px;top:1px;width:95px;height:89px;">
+      <img src="assets/producto1.png" class="producto producto1" style="position:absolute;left:0;bottom:0px;width:95px;height:60px;" alt="">
+      <img src="assets/producto2.png" class="producto producto2" style="position:absolute;left:0;bottom:0px;width:95px;height:89px;" alt="">
+    </div>
+    <img src="assets/cta.png" style="position:absolute;left:741px;top:27px;width:206px;height:43px;" alt="">
+    <img src="assets/disclaimer.svg" style="position:absolute;left:498px;top:79px;width:457px;height:8px;" alt="">
+</div>
+<script>
+  var clickTag = "https://www.dormimundo.com.mx/";
+</script>
+</body>
+</html>

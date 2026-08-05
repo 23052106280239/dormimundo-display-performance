@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="ad.size" content="width=970,height=250">
+<title>Dormimundo Haz tu Agosto 970x250</title>
+<style>
+  html,body{margin:0;padding:0;}
+  #banner{position:relative;width:970px;height:250px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;cursor:pointer;}
+  .bg{position:absolute;left:0;top:0;width:970px;height:250px;}
+  .producto1{animation:fadeClosed 7s infinite;}
+  .producto2{animation:fadeOpen 7s infinite;}
+  @keyframes fadeClosed {
+    0%   { opacity:1; }
+    40%  { opacity:1; }
+    50%  { opacity:0; }
+    90%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @keyframes fadeOpen {
+    0%   { opacity:0; }
+    40%  { opacity:0; }
+    50%  { opacity:1; }
+    90%  { opacity:1; }
+    100% { opacity:0; }
+  }
+</style>
+</head>
+<body>
+<div id="banner" onclick="window.open(window.clickTag, '_blank');">
+    <img src="assets/background.png" class="bg" alt="">
+    <img src="assets/top.png" style="position:absolute;left:29px;top:43px;width:247px;height:151px;" alt="">
+    <img src="assets/promo.png" style="position:absolute;left:485px;top:15px;width:273px;height:103px;" alt="">
+    <img src="assets/copy_2en1.svg" style="position:absolute;left:520px;top:138.87px;width:172px;height:61.26px;" alt="">
+    <img src="assets/copy_colchones.png" style="position:absolute;left:646px;top:95px;width:170px;height:55px;" alt="">
+    <div class="producto-wrap" style="position:absolute;left:258px;top:0px;width:261px;height:221px;">
+      <img src="assets/producto1.png" class="producto producto1" style="position:absolute;left:0;bottom:0px;width:261px;height:171px;" alt="">
+      <img src="assets/producto2.png" class="producto producto2" style="position:absolute;left:0;bottom:0px;width:261px;height:221px;" alt="">
+    </div>
+    <img src="assets/cta.png" style="position:absolute;left:737px;top:158px;width:206px;height:43px;" alt="">
+    <img src="assets/disclaimer.svg" style="position:absolute;left:77px;top:233px;width:816px;height:13px;" alt="">
+</div>
+<script>
+  var clickTag = "https://www.dormimundo.com.mx/";
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dormimundo - Haz tu Agosto - Preview de banners DV360</title>
+<style>
+  body{
+    margin:0; padding:24px;
+    background:#f2f4f7;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#1a2a44;
+  }
+  header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:6px;
+  }
+  header img.logo{
+    height:72px;
+    width:auto;
+    display:block;
+  }
+  h1{
+    font-family:"Arial Black","Helvetica Neue",Impact,sans-serif;
+    font-weight:900;
+    font-size:44px;
+    letter-spacing:-1px;
+    margin:0;
+    color:#0b3f7a;
+  }
+  p.sub{ margin:0 0 20px; color:#5b6779; font-size:13px; }
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    border:1px solid #e2e6ec;
+    border-radius:10px;
+    padding:12px 14px;
+    margin-bottom:22px;
+  }
+  .controls .label{
+    font-size:12px;
+    font-weight:700;
+    color:#5b6779;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-right:4px;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    background:#f2f4f7;
+    border:1px solid #d7dce3;
+    border-radius:999px;
+    padding:5px 10px 5px 8px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .chip input{ cursor:pointer; }
+  .chip:hover{ background:#eaeef3; }
+  .controls .sep{ width:1px; height:20px; background:#e2e6ec; margin:0 4px; }
+  .controls .toggle-all{
+    font-size:12px; color:#0b3f7a; background:none; border:none;
+    cursor:pointer; text-decoration:underline; padding:0;
+  }
+  .grid{ display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+  .card{
+    background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.12);
+    padding:12px; display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .card.hidden{ display:none; }
+  .card h2{ font-size:13px; margin:0; font-weight:600; color:#1a2a44; }
+  .frame-wrap{
+    border:1px solid #e2e6ec;
+    background:
+      linear-gradient(45deg,#eee 25%,transparent 25%),
+      linear-gradient(-45deg,#eee 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#eee 75%),
+      linear-gradient(-45deg,transparent 75%,#eee 75%);
+    background-size:16px 16px;
+    background-position:0 0,0 8px,8px -8px,-8px 0;
+    overflow:hidden;
+  }
+  iframe{ border:0; display:block; }
+  .reload{
+    font-size:11px; color:#7a8494; cursor:pointer; border:1px solid #d7dce3;
+    background:#fafbfc; border-radius:6px; padding:3px 8px;
+  }
+  .reload:hover{ background:#eef1f5; }
+</style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="shared/logo.png" alt="DORMIMUNDO">
+    <h1>DORMIMUNDO &mdash; Haz tu Agosto</h1>
+  </header>
+  <p class="sub">Click en &quot;Reload&quot; para volver a ver la animaci&oacute;n desde el inicio.</p>
+  <div class="controls" id="controls"><span class="label">Banners</span></div>
+  <div class="grid" id="grid"></div>
+<script>
+  var banners = [
+    {name:"970x250", folder:"970x250-dormimundo", w:970, h:250},
+    {name:"970x90",  folder:"970x90-dormimundo",  w:970, h:90},
+    {name:"320x100", folder:"320x100-dormimundo", w:320, h:100},
+    {name:"300x100", folder:"300x100-dormimundo", w:300, h:100},
+    {name:"320x50",  folder:"320x50-dormimundo",  w:320, h:50},
+    {name:"1080x1080", folder:"1080x1080-dormimundo", w:1080, h:1080, scale:0.35},
+    {name:"300x600", folder:"300x600-dormimundo", w:300, h:600},
+    {name:"320x480", folder:"320x480-dormimundo", w:320, h:480},
+    {name:"300x250", folder:"300x250-dormimundo", w:300, h:250},
+  ];
+  var grid = document.getElementById('grid');
+  var controls = document.getElementById('controls');
+  banners.forEach(function(b, idx){
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card-' + idx;
+    var title = document.createElement('h2');
+    title.textContent = b.name;
+    card.appendChild(title);
+    var wrap = document.createElement('div');
+    wrap.className = 'frame-wrap';
+    var scale = b.scale || 1;
+    wrap.style.width = (b.w*scale) + 'px';
+    wrap.style.height = (b.h*scale) + 'px';
+    var iframe = document.createElement('iframe');
+    iframe.id = 'frame-' + idx;
+    iframe.src = b.folder + '/index.html';
+    iframe.width = b.w;
+    iframe.height = b.h;
+    iframe.style.transform = 'scale(' + scale + ')';
+    iframe.style.transformOrigin = 'top left';
+    wrap.appendChild(iframe);
+    card.appendChild(wrap);
+    var reload = document.createElement('div');
+    reload.className = 'reload';
+    reload.textContent = 'Reload';
+    reload.onclick = function(){
+      document.getElementById('frame-' + idx).src = b.folder + '/index.html?_=' + Date.now();
+    };
+    card.appendChild(reload);
+    grid.appendChild(card);
+    var chip = document.createElement('label');
+    chip.className = 'chip';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = true;
+    cb.onchange = function(){ card.classList.toggle('hidden', !cb.checked); };
+    chip.appendChild(cb);
+    chip.appendChild(document.createTextNode(b.name));
+    controls.appendChild(chip);
+  });
+  var sep = document.createElement('span');
+  sep.className = 'sep';
+  controls.appendChild(sep);
+  var allBtn = document.createElement('button');
+  allBtn.className = 'toggle-all';
+  allBtn.textContent = 'Seleccionar todos';
+  allBtn.onclick = function(){
+    controls.querySelectorAll('input[type=checkbox]').forEach(function(cb){ cb.checked = true; cb.onchange(); });
+  };
+  controls.appendChild(allBtn);
+  var noneBtn = document.createElement('button');
+  noneBtn.className = 'toggle-all';
+  noneBtn.textContent = 'Ninguno';
+  noneBtn.onclick = function(){
+    controls.querySelectorAll('input[type=checkbox]').forEach(function(cb){ cb.checked = false; cb.onchange(); });
+  };
+  controls.appendChild(noneBtn);
+</script>
+</body>
+</html>
